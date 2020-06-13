@@ -1,0 +1,3 @@
+include ':dtext'
+include ':app'
+rootProject.name = "Android DText Library"
