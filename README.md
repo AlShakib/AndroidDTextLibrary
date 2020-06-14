@@ -45,7 +45,7 @@ allprojects {
 
 ```java
 dependencies {
-	implementation "com.gitlab.AlShakib:dtext:$dtext_version"
+	implementation "com.gitlab.AlShakib:dtext:1.0.0"
 }
 ```
 
@@ -68,7 +68,7 @@ dependencies {
 <dependency>
     <groupId>com.gitlab.AlShakib</groupId>
     <artifactId>dtext</artifactId>
-    <version>Current_Version_Number</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
