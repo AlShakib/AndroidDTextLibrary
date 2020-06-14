@@ -24,13 +24,14 @@ The latest version is available for,
 
 ### Installation
 
-**TODO**
+***TODO***
 
 ### Basic Usages
 
 For a simple drawable from a string,
 
 ```java
+// Create a drawable with "Android" text
 Drawable drawableText = new DText.Builder()
                 .setText("Android")
                 .build();
@@ -99,6 +100,7 @@ builder.setBorder(16);
 
 // You can customize the border shade factor.
 // By default DText uses 0.9f as a shade factor.
+// 1f is 100% transparent, 0f is 100% solid!
 builder.setBorderShadeFactor(0.7f);
 
 // By default, DText uses pixels to calculate height, width and text size.
@@ -122,8 +124,8 @@ builder.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
 // Transform to upper case letter.
 builder.toUpperCase();
 
-// Draw as a circle on the canvas.
-builder.drawAsCircle();
+// Draw as a round on the canvas.
+builder.drawAsRound();
 
 // Draw as a rectangle on the canvas.
 builder.drawAsRectangle();
