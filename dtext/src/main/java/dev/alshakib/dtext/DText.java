@@ -127,8 +127,8 @@ public class DText extends ShapeDrawable {
     // Generate random color if isRandomBackgroundColor is set
     private int getRandomColor() {
         Random random = new Random(System.currentTimeMillis());
-        return Color.parseColor(builder.randomColorSet
-                .get(random.nextInt(builder.randomColorSet.size())));
+        return Color.parseColor(builder.randomColorList
+                .get(random.nextInt(builder.randomColorList.size())));
     }
 
     // Create a darker shade for border
@@ -218,9 +218,9 @@ public class DText extends ShapeDrawable {
         private boolean isDigitOnly;
         private boolean isAlphaNumOnly;
         private boolean isRandomBackgroundColor;
-        private List<String> randomColorSet;
+        private List<String> randomColorList;
 
-        public void setDefaults() {
+        public Builder() {
             text = "";
             textSize = -1;
             width = -1;
@@ -231,7 +231,7 @@ public class DText extends ShapeDrawable {
             textColor = Color.WHITE;
             shape = new RectShape();
             typeface = Typeface.DEFAULT;
-            randomColorSet = new ArrayList<>(
+            randomColorList = new ArrayList<>(
                     Arrays.asList(
                             "#DB4437",
                             "#E91E63",
@@ -291,63 +291,67 @@ public class DText extends ShapeDrawable {
             this.borderShadeFactor = borderShadeFactor;
         }
 
-        public void setUpperCase(boolean flag) {
+        public void enableUpperCase(boolean flag) {
             this.toUpperCase = flag;
         }
 
         public void toUpperCase() {
-            setUpperCase(true);
+            enableUpperCase(true);
         }
 
-        public void setFirstCharOnly(boolean flag) {
+        public void enableFirstCharOnly(boolean flag) {
             this.isFirstCharOnly = flag;
         }
 
         public void firstCharOnly() {
-            setFirstCharOnly(true);
+            enableFirstCharOnly(true);
         }
 
-        public void setDigitOnly(boolean flag) {
+        public void enableDigitOnly(boolean flag) {
             this.isDigitOnly = flag;
         }
 
         public void digitOnly() {
-            setDigitOnly(true);
+            enableDigitOnly(true);
         }
 
-        public void setAlphaNumOnly(boolean flag) {
+        public void enableAlphaNumOnly(boolean flag) {
             this.isAlphaNumOnly = flag;
         }
 
         public void alphaNumOnly() {
-            setAlphaNumOnly(true);
+            enableAlphaNumOnly(true);
         }
 
-        public void setRandomBackgroundColor(boolean flag) {
+        public void enableRandomBackgroundColor(boolean flag) {
             this.isRandomBackgroundColor = flag;
         }
 
         public void randomBackgroundColor() {
-            setRandomBackgroundColor(true);
+            enableRandomBackgroundColor(true);
         }
 
-        public void bold() {
+        public void setRandomColorList(List<String> backgroundColorList) {
+            this.randomColorList = backgroundColorList;
+        }
+
+        public void boldText() {
             typeface = Typeface.create(typeface, Typeface.BOLD);
         }
 
-        public void italic() {
+        public void italicText() {
             typeface = Typeface.create(typeface, Typeface.ITALIC);
         }
 
-        public void boldItalic() {
+        public void boldItalicText() {
             typeface = Typeface.create(typeface, Typeface.BOLD_ITALIC);
         }
 
-        public void drawAsRect() {
+        public void drawAsRectangle() {
             this.shape = new RectShape();
         }
 
-        public void drawAsRect(float radius) {
+        public void drawAsRectangle(float radius) {
             this.radius = radius;
             float[] radii = {radius, radius, radius, radius, radius, radius, radius, radius};
             this.shape = new RoundRectShape(radii, null, null);

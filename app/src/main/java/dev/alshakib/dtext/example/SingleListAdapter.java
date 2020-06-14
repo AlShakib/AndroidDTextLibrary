@@ -19,6 +19,7 @@
 
 package dev.alshakib.dtext.example;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,16 @@ class SingleListAdapter extends ListAdapter<String, SingleListAdapter.SingleList
         super(new StringDiffCallback());
     }
 
+    private Drawable createDrawable(String text) {
+        DText.Builder builder = new DText.Builder();
+        builder.setText(text);
+        builder.drawAsCircle();
+        builder.boldText();
+        builder.randomBackgroundColor();
+        builder.firstCharOnly();
+        return builder.build();
+    }
+
     @NonNull
     @Override
     public SingleListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,14 +62,7 @@ class SingleListAdapter extends ListAdapter<String, SingleListAdapter.SingleList
     public void onBindViewHolder(@NonNull SingleListViewHolder holder, int position) {
         String text = getItem(position);
         holder.displayTitle.setText(text);
-        DText.Builder builder = new DText.Builder();
-        builder.setDefaults();
-        builder.drawAsCircle();
-        builder.setText(text);
-        builder.bold();
-        builder.randomBackgroundColor();
-        builder.firstCharOnly();
-        holder.displayIcon.setImageDrawable(builder.build());
+        holder.displayIcon.setImageDrawable(createDrawable(text));
     }
 
     public static class SingleListViewHolder extends RecyclerView.ViewHolder {
