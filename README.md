@@ -1,8 +1,8 @@
-
+![Android DText Library](docs/assets/DText.png)
 
 # Android DText Library
 
-DText (For curious mind, it is DrawableText) is a minimal Android Library that creates beautiful drawable from a string. You can use it from anywhere from your project. By default it uses pixels as a unit of measurement. But you can use sp (for font specifics) or dp (for height/width specifics) by passing a 'context' to the builder.
+DText *(for curious mind, it is DrawableText)* is a minimal Android Library that creates beautiful [drawable](https://developer.android.com/reference/android/graphics/drawable/Drawable) from a string. You can use it from anywhere in your project. It is written in Java. The source code is published under GPLv3 and the license is available [here](LICENSE).
 
 ## Table of Contents
 
@@ -13,6 +13,12 @@ DText (For curious mind, it is DrawableText) is a minimal Android Library that c
 <img src="docs/assets/gray_circle.jpg" alt="Gray Circle Avatar" width="200" /><img src="docs/assets/color_circle.jpg" alt="Color Circle Avatar" width="200" /><img src="docs/assets/color_rect_radius.jpg" alt="Squircle Avatars" width="200" /><img src="docs/assets/color_square.jpg" alt="Square Avatars" width="200" />
 
 
+
+## Supported SDK
+
+The latest version is available for,
+
+* Android SKD 14 and higer
 
 ## Contributing
 
