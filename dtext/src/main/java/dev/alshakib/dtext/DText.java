@@ -286,8 +286,18 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
-        public Builder   setBackgroundColor(int color) {
+        public Builder setTextColor(String color) {
+            this.textColor = Color.parseColor(color);
+            return this;
+        }
+
+        public Builder setBackgroundColor(int color) {
             this.backgroundColor = color;
+            return this;
+        }
+
+        public Builder setBackgroundColor(String color) {
+            this.backgroundColor = Color.parseColor(color);
             return this;
         }
 
