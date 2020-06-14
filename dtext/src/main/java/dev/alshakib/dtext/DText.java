@@ -19,7 +19,6 @@
 
 package dev.alshakib.dtext;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -88,12 +87,14 @@ public class DText extends ShapeDrawable {
         paint.setColor(backgroundColor);
     }
 
-    public float dpToPx(float dp) {
+    // Use to convert Density-independent Pixels to Pixels
+    private float dpToPx(float dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                 builder.context.getResources().getDisplayMetrics());
     }
 
-    public float spToPx(float sp) {
+    // Use to convert Scale-independent Pixels to Pixels
+    private float spToPx(float sp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp,
                 builder.context.getResources().getDisplayMetrics());
     }
@@ -104,13 +105,17 @@ public class DText extends ShapeDrawable {
         // isDigitOnly and isAlphaNumOnly will work if isFirstCharOnly is set
         if (builder.isFirstCharOnly) {
 
-            // Remove non digit characters if isDigitOnly is set
+            // Remove non digit characters if isDigitOnly is set.
+            // If the text is "You have 4 notifications", the library will build "4" as a drawable.
             text = builder.isDigitOnly ? text.replaceAll("[^\\p{Nd}]", "") : text;
 
-            // Remove non Alpha Numeric characters if isAlphaNumOnly is set
+            // Remove non Alpha Numeric characters if isAlphaNumOnly is set.
+            // If the text is "<Unknown>", the library will not build "<" as a drawable.
+            // The library will build "U" as a drawable.
             text = builder.isAlphaNumOnly ? text.replaceAll("[^\\p{L}\\p{Nl}\\p{Nd}]", "") : text;
 
             if (text.isEmpty()) {
+                // Build a dot as a drawable, if no valid text is found.
                 return "•";
             }
             text = String.valueOf(text.charAt(0));
@@ -126,35 +131,14 @@ public class DText extends ShapeDrawable {
                 .get(random.nextInt(builder.randomColorSet.size())));
     }
 
+    // Create a darker shade for border
     private int getDarkerShade(int color) {
         return Color.rgb((int) (builder.borderShadeFactor * Color.red(color)),
                 (int) (builder.borderShadeFactor * Color.green(color)),
                 (int) (builder.borderShadeFactor * Color.blue(color)));
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-        Rect bounds = getBounds();
-
-        if (this.borderThickness > 0) {
-            drawBorder(canvas);
-        }
-
-        int savedCanvas = canvas.save();
-        canvas.translate(bounds.left, bounds.top);
-
-        float canvasWidth = this.width < 0 ? bounds.width() : this.width;
-        float canvasHeight = this.height < 0 ? bounds.height() : this.height;
-        float textSize = this.textSize < 0 ? (Math.min(canvasWidth, canvasHeight) / 2) : this.textSize;
-
-        textPaint.setTextSize(textSize);
-        canvas.drawText(getValidText(builder.text), canvasWidth / 2, canvasHeight / 2 -
-                ((textPaint.descent() + textPaint.ascent()) / 2), textPaint);
-
-        canvas.restoreToCount(savedCanvas);
-    }
-
+    // Draw a border around the drawable.
     private void drawBorder(Canvas canvas) {
         RectF rect = new RectF(getBounds());
         rect.inset((float) this.borderThickness / 2, (float) this.borderThickness / 2);
@@ -166,6 +150,29 @@ public class DText extends ShapeDrawable {
         } else {
             canvas.drawRect(rect, borderPaint);
         }
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        Rect bounds = getBounds();
+
+        if (this.borderThickness > 0) {
+            drawBorder(canvas);
+        }
+
+        int savedCanvasCount = canvas.save();
+        canvas.translate(bounds.left, bounds.top);
+
+        float canvasWidth = this.width < 0 ? bounds.width() : this.width;
+        float canvasHeight = this.height < 0 ? bounds.height() : this.height;
+        float textSize = this.textSize < 0 ? (Math.min(canvasWidth, canvasHeight) / 2) : this.textSize;
+
+        textPaint.setTextSize(textSize);
+        canvas.drawText(getValidText(builder.text), canvasWidth / 2, canvasHeight / 2 -
+                ((textPaint.descent() + textPaint.ascent()) / 2), textPaint);
+
+        canvas.restoreToCount(savedCanvasCount);
     }
 
     @Override
