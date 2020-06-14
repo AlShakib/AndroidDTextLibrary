@@ -20,14 +20,41 @@
 package dev.alshakib.dtext.example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private SingleListAdapter singleListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupRecyclerView();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        singleListAdapter.submitList(fetchData());
+    }
+
+    private void setupRecyclerView() {
+        RecyclerView singleListRecyclerView = findViewById(R.id.main_list_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        singleListRecyclerView.setLayoutManager(linearLayoutManager);
+        singleListAdapter = new SingleListAdapter();
+        singleListRecyclerView.setAdapter(singleListAdapter);
+    }
+
+    private List<String> fetchData() {
+        String[] dataSet = getResources().getStringArray(R.array.countries_array);
+        return Arrays.asList(dataSet);
     }
 }
