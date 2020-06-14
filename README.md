@@ -1,7 +1,6 @@
 ![Android DText Library](docs/assets/DText.png)
 
-[![Release](https://jitpack.io/v/User/Repo.svg)]
-(https://jitpack.io/#/dtext/Tag)
+[![](https://jitpack.io/v/com.gitlab.AlShakib/dtext.svg)](https://jitpack.io/#com.gitlab.AlShakib/dtext)
 
 # Android DText Library
 
