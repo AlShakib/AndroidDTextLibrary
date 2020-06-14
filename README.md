@@ -10,11 +10,11 @@ DText (For curious mind, it is DrawableText) is a minimal Android Library that c
 
 ## Screenshots
 
-![Gray Circle Avatar](/mnt/Prime/Workshop/Android/AndroidDTextLibrary/docs/assets/gray_circle.jpg) ![Color Circle Avatar](/mnt/Prime/Workshop/Android/AndroidDTextLibrary/docs/assets/color_circle.jpg)
+![Gray Circle Avatar](docs/assets/gray_circle.jpg) ![Color Circle Avatar](docs/assets/color_circle.jpg)
 
-![Squircle Avatars](/mnt/Prime/Workshop/Android/AndroidDTextLibrary/docs/assets/color_rect_radius.jpg)
+![Squircle Avatars](docs/assets/color_rect_radius.jpg)
 
-![Square Avatars](/mnt/Prime/Workshop/Android/AndroidDTextLibrary/docs/assets/color_square.jpg)
+![Square Avatars](docs/assets/color_square.jpg)
 
 ## Contributing
 
