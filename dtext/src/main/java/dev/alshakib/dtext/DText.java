@@ -43,6 +43,23 @@ import java.util.Random;
 public class DText extends ShapeDrawable {
     private final String LOG_TAG = this.getClass().getSimpleName();
 
+    private final String[] defaultColors = {
+            "#DB4437",
+            "#E91E63",
+            "#9C27B0",
+            "#673AB7",
+            "#3F51B5",
+            "#4285F4",
+            "#039BE5",
+            "#0097A7",
+            "#009688",
+            "#0F9D58",
+            "#689F38",
+            "#EF6C00",
+            "#FF5722",
+            "#757575"
+    };
+
     private final Builder builder;
     private final Paint textPaint;
     private final Paint borderPaint;
@@ -52,6 +69,8 @@ public class DText extends ShapeDrawable {
     private float borderThickness;
     private float textSize;
 
+    private List<String> randomColorList;
+
     private DText(Builder builder) {
         super(builder.shape);
         this.builder = builder;
@@ -60,8 +79,15 @@ public class DText extends ShapeDrawable {
         // Use sp and dp as unit of measurement.
         height = builder.context != null ? dpToPx(builder.height) : builder.height;
         width = builder.context != null ? dpToPx(builder.width) : builder.width;
-        borderThickness = builder.context != null ? dpToPx(builder.borderThickness) : builder.borderThickness;
+        borderThickness = builder.context != null ?
+                dpToPx(builder.borderThickness) : builder.borderThickness;
         textSize = builder.context != null ? spToPx(builder.textSize) : builder.textSize;
+
+        if (builder.isRandomBackgroundColor) {
+            randomColorList = builder.randomColorList == null ?
+                    new ArrayList<>(Arrays.asList(defaultColors)) :
+                    builder.randomColorList;
+        }
 
         // Initialize paint class for text
         textPaint = new Paint();
@@ -72,7 +98,8 @@ public class DText extends ShapeDrawable {
         textPaint.setTypeface(builder.typeface);
         textPaint.setStrokeWidth(this.borderThickness);
 
-        int backgroundColor = builder.isRandomBackgroundColor ? getRandomColor() : builder.backgroundColor;
+        int backgroundColor = builder.isRandomBackgroundColor ?
+                getRandomColor() : builder.backgroundColor;
 
         // Initialize paint class for border
         borderPaint = new Paint();
@@ -125,8 +152,8 @@ public class DText extends ShapeDrawable {
     // Generate random color if isRandomBackgroundColor is set
     private int getRandomColor() {
         Random random = new Random(System.currentTimeMillis());
-        return Color.parseColor(builder.randomColorList
-                .get(random.nextInt(builder.randomColorList.size())));
+        return Color.parseColor(randomColorList
+                .get(random.nextInt(randomColorList.size())));
     }
 
     // Create a darker shade for border
@@ -164,7 +191,8 @@ public class DText extends ShapeDrawable {
 
         float canvasWidth = this.width < 0 ? bounds.width() : this.width;
         float canvasHeight = this.height < 0 ? bounds.height() : this.height;
-        float textSize = this.textSize < 0 ? (Math.min(canvasWidth, canvasHeight) / 2) : this.textSize;
+        float textSize = this.textSize < 0 ?
+                (Math.min(canvasWidth, canvasHeight) / 2) : this.textSize;
 
         textPaint.setTextSize(textSize);
         canvas.drawText(getValidText(builder.text), canvasWidth / 2, canvasHeight / 2 -
@@ -229,24 +257,6 @@ public class DText extends ShapeDrawable {
             textColor = Color.WHITE;
             shape = new RectShape();
             typeface = Typeface.DEFAULT;
-            randomColorList = new ArrayList<>(
-                    Arrays.asList(
-                            "#DB4437",
-                            "#E91E63",
-                            "#9C27B0",
-                            "#673AB7",
-                            "#3F51B5",
-                            "#4285F4",
-                            "#039BE5",
-                            "#0097A7",
-                            "#009688",
-                            "#0F9D58",
-                            "#689F38",
-                            "#EF6C00",
-                            "#FF5722",
-                            "#757575"
-                    )
-            );
         }
 
         public Builder useSpAndDp(Context context) {
