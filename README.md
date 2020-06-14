@@ -10,7 +10,7 @@ DText (For curious mind, it is DrawableText) is a minimal Android Library that c
 
 ## Screenshots
 
-<img src="docs/assets/gray_circle.jpg" alt="Gray Circle Avatar" style="zoom:25%;" /> <img src="docs/assets/color_circle.jpg" alt="Color Circle Avatar" style="zoom:25%;" /><img src="docs/assets/color_rect_radius.jpg" alt="Squircle Avatars" style="zoom:25%;" /><img src="docs/assets/color_square.jpg" alt="Square Avatars" style="zoom:25%;" />
+<img src="docs/assets/gray_circle.jpg" alt="Gray Circle Avatar" width="250" /><img src="docs/assets/color_circle.jpg" alt="Color Circle Avatar" width="250" /><img src="docs/assets/color_rect_radius.jpg" alt="Squircle Avatars" width="250" /><img src="docs/assets/color_square.jpg" alt="Square Avatars" width="250" />
 
 ## Contributing
 
