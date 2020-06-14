@@ -46,7 +46,7 @@ class SingleListAdapter extends ListAdapter<String, SingleListAdapter.SingleList
     private Drawable createDrawable(String text) {
         DText.Builder builder = new DText.Builder();
         builder.setText(text);
-        builder.drawAsCircle();
+        builder.drawAsRound();
         builder.useSpAndDp(context);
         builder.boldText();
         builder.randomBackgroundColor();

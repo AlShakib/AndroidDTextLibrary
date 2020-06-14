@@ -49,7 +49,6 @@ public class DText extends ShapeDrawable {
 
     private float height;
     private float width;
-    private float radius;
     private float borderThickness;
     private float textSize;
 
@@ -61,7 +60,6 @@ public class DText extends ShapeDrawable {
         // Use sp and dp as unit of measurement.
         height = builder.context != null ? dpToPx(builder.height) : builder.height;
         width = builder.context != null ? dpToPx(builder.width) : builder.width;
-        radius = builder.context != null ? dpToPx(builder.radius) : builder.radius;
         borderThickness = builder.context != null ? dpToPx(builder.borderThickness) : builder.borderThickness;
         textSize = builder.context != null ? spToPx(builder.textSize) : builder.textSize;
 
@@ -146,7 +144,7 @@ public class DText extends ShapeDrawable {
         if (builder.shape instanceof OvalShape) {
             canvas.drawOval(rect, borderPaint);
         } else if (builder.shape instanceof RoundRectShape) {
-            canvas.drawRoundRect(rect, this.radius, this.radius, borderPaint);
+            canvas.drawRoundRect(rect, builder.radius, builder.radius, borderPaint);
         } else {
             canvas.drawRect(rect, borderPaint);
         }
@@ -393,7 +391,7 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
-        public Builder drawAsCircle() {
+        public Builder drawAsRound() {
             shape = new OvalShape();
             return this;
         }
