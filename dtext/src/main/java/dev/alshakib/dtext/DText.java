@@ -251,114 +251,141 @@ public class DText extends ShapeDrawable {
             );
         }
 
-        public void useSpAndDp(Context context) {
+        public Builder useSpAndDp(Context context) {
             this.context = context;
+            return this;
         }
 
-        public void setText(String text) {
+        public Builder setText(String text) {
             this.text = text;
+            return this;
         }
 
-        public void setHeight(float height) {
+        public Builder setHeight(float height) {
             this.height = height;
+            return this;
         }
 
-        public void setWidth(float width) {
+        public Builder setWidth(float width) {
             this.width = width;
+            return this;
         }
 
-        public void setTypeface(Typeface typeface) {
+        public Builder setTypeface(Typeface typeface) {
             this.typeface = typeface;
+            return this;
         }
 
-        public void setTextSize(float textSize) {
+        public Builder setTextSize(float textSize) {
             this.textSize = textSize;
+            return this;
         }
 
-        public void setTextColor(int color) {
+        public Builder setTextColor(int color) {
             this.textColor = color;
+            return this;
         }
 
-        public void setBackgroundColor(int color) {
+        public Builder   setBackgroundColor(int color) {
             this.backgroundColor = color;
+            return this;
         }
 
-        public void setBorder(float thickness) {
+        public Builder setBorder(float thickness) {
             this.borderThickness = thickness;
+            return this;
         }
 
-        public void setBorderShadeFactor(float borderShadeFactor) {
+        public Builder setBorderShadeFactor(float borderShadeFactor) {
             this.borderShadeFactor = borderShadeFactor;
+            return this;
         }
 
-        public void enableUpperCase(boolean flag) {
+        public Builder enableUpperCase(boolean flag) {
             this.toUpperCase = flag;
+            return this;
         }
 
-        public void toUpperCase() {
+        public Builder toUpperCase() {
             enableUpperCase(true);
+            return this;
         }
 
-        public void enableFirstCharOnly(boolean flag) {
+        public Builder enableFirstCharOnly(boolean flag) {
             this.isFirstCharOnly = flag;
+            return this;
         }
 
-        public void firstCharOnly() {
+        public Builder firstCharOnly() {
             enableFirstCharOnly(true);
+            return this;
         }
 
-        public void enableDigitOnly(boolean flag) {
+        public Builder enableDigitOnly(boolean flag) {
             this.isDigitOnly = flag;
+            return this;
         }
 
-        public void digitOnly() {
+        public Builder digitOnly() {
             enableDigitOnly(true);
+            return this;
         }
 
-        public void enableAlphaNumOnly(boolean flag) {
+        public Builder enableAlphaNumOnly(boolean flag) {
             this.isAlphaNumOnly = flag;
+            return this;
         }
 
-        public void alphaNumOnly() {
+        public Builder alphaNumOnly() {
             enableAlphaNumOnly(true);
+            return this;
         }
 
-        public void enableRandomBackgroundColor(boolean flag) {
+        public Builder enableRandomBackgroundColor(boolean flag) {
             this.isRandomBackgroundColor = flag;
+            return this;
         }
 
-        public void randomBackgroundColor() {
+        public Builder randomBackgroundColor() {
             enableRandomBackgroundColor(true);
+            return this;
         }
 
-        public void setRandomColorList(List<String> backgroundColorList) {
+        public Builder setRandomColorList(List<String> backgroundColorList) {
             this.randomColorList = backgroundColorList;
+            return this;
         }
 
-        public void boldText() {
+        public Builder boldText() {
             typeface = Typeface.create(typeface, Typeface.BOLD);
+            return this;
         }
 
-        public void italicText() {
+        public Builder italicText() {
             typeface = Typeface.create(typeface, Typeface.ITALIC);
+            return this;
         }
 
-        public void boldItalicText() {
+        public Builder boldItalicText() {
             typeface = Typeface.create(typeface, Typeface.BOLD_ITALIC);
+            return this;
         }
 
-        public void drawAsRectangle() {
+        public Builder drawAsRectangle() {
             this.shape = new RectShape();
+            return this;
         }
 
-        public void drawAsRectangle(float radius) {
+        public Builder drawAsRectangle(float radius) {
             this.radius = radius;
             float[] radii = {radius, radius, radius, radius, radius, radius, radius, radius};
             this.shape = new RoundRectShape(radii, null, null);
+            return this;
         }
 
-        public void drawAsCircle() {
+        public Builder drawAsCircle() {
             shape = new OvalShape();
+            return this;
         }
 
         public DText build() {
