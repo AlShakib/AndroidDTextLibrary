@@ -251,7 +251,7 @@ public class DText extends ShapeDrawable {
             );
         }
 
-        public void doNotUsePixel(Context context) {
+        public void useSpAndDp(Context context) {
             this.context = context;
         }
 

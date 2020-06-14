@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView singleListRecyclerView = findViewById(R.id.main_list_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         singleListRecyclerView.setLayoutManager(linearLayoutManager);
-        singleListAdapter = new SingleListAdapter();
+        singleListAdapter = new SingleListAdapter(getApplicationContext());
         singleListRecyclerView.setAdapter(singleListAdapter);
     }
 

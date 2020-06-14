@@ -19,6 +19,7 @@
 
 package dev.alshakib.dtext.example;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,15 +36,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import dev.alshakib.dtext.DText;
 
 class SingleListAdapter extends ListAdapter<String, SingleListAdapter.SingleListViewHolder> {
+    private Context context;
 
-    protected SingleListAdapter() {
+    protected SingleListAdapter(Context context) {
         super(new StringDiffCallback());
+        this.context = context;
     }
 
     private Drawable createDrawable(String text) {
         DText.Builder builder = new DText.Builder();
         builder.setText(text);
         builder.drawAsCircle();
+        builder.useSpAndDp(context);
         builder.boldText();
         builder.randomBackgroundColor();
         builder.firstCharOnly();
