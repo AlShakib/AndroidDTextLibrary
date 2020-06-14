@@ -18,7 +18,119 @@ DText *(for curious mind, it is DrawableText)* is a minimal Android Library that
 
 The latest version is available for,
 
-* Android SKD 14 and higer
+* Android SKD 14 and higher
+
+## Getting Started
+
+### Installation
+
+**TODO**
+
+### Basic Usages
+
+For a simple drawable from a string,
+
+```java
+Drawable drawableText = new DText.Builder()
+                .setText("Android")
+                .build();
+// Now you can use drawableText with an ImageView or any other components
+```
+
+### Customization
+
+DText offers a variety of options that can be applied to individual requests, including shape, color, text options etc.
+
+```java
+// Create an instance of Builder class.
+DText.Builder builder = new DText.Builder();
+
+// Set text that we are going to draw.
+builder.setText("Android DText Library");
+
+// Draw only the first character.
+// If the text is "android",
+// then the builder will draw "a" on the canvas.
+builder.firstCharOnly();
+
+// Draw only the alphanumeric character.
+// If the text is "<Unknown>",
+// then the builder will draw first alphanumeric character
+// from the text. In this case, it is "U".
+// NOTE: alphaNumOnly() will not work without firstCharOnly().
+builder.alphaNumOnly();
+
+// Draw only the first digit from the text.
+// If the text is "You have 5 notifications",
+// then the builder will draw "5" on the canvas.
+// NOTE: digitOnly() will not work without firstCharOnly().
+builder.digitOnly();
+
+// Use random background color from a nice preset background color list.
+builder.randomBackgroundColor();
+
+// You can pass your own color list to the builder as well.
+List<String> colorList = new ArrayList<>();
+colorList.add("#9C27B0");
+colorList.add("#EF6C00");
+builder.setRandomColorList(colorList);
+
+// You can set a background color as well.
+// By default, the background color is gray.
+builder.setBackgroundColor(Color.BLUE);
+// or
+builder.setBackgroundColor("#0000FF");
+
+// You can set text color with integer or string (HEX) value.
+// By default, the text color is white.
+builder.setTextColor(Color.RED);
+// or
+builder.setTextColor("#FF0000");
+
+// Set height and width of the canvas.
+builder.setHeight(150);
+builder.setWidth(150);
+
+// Set text size.
+builder.setTextSize(24);
+
+// Draw border around the canvas.
+builder.setBorder(16);
+
+// You can customize the border shade factor.
+// By default DText uses 0.9f as a shade factor.
+builder.setBorderShadeFactor(0.7f);
+
+// By default, DText uses pixels to calculate height, width and text size.
+// But you can use DP for height/width and SP for text size as well
+// by passing a context to the builder.
+builder.useSpAndDp(context);
+
+// Use bold text.
+builder.boldText();
+
+// Use italic text.
+builder.italicText();
+
+// Use bold italic text.
+builder.boldItalicText();
+
+// By default, DText uses Typeface.DEFAULT.
+// But you can pass your own typeface as well.
+builder.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
+
+// Transform to upper case letter.
+builder.toUpperCase();
+
+// Draw as a circle on the canvas.
+builder.drawAsCircle();
+
+// Draw as a rectangle on the canvas.
+builder.drawAsRectangle();
+
+// Draw as a rectangle with border radius on the canvas.
+builder.drawAsRectangle(16);
+```
 
 ## Contributing
 
