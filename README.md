@@ -1,5 +1,8 @@
 ![Android DText Library](docs/assets/DText.png)
 
+[![Release](https://jitpack.io/v/User/Repo.svg)]
+(https://jitpack.io/#/dtext/Tag)
+
 # Android DText Library
 
 DText *(for curious mind, it is DrawableText)* is a minimal Android Library that creates beautiful [drawable](https://developer.android.com/reference/android/graphics/drawable/Drawable) from a string. You can use it from anywhere in your project. It is written in Java. The source code is published under GPLv3 and the license is available [here](LICENSE).
