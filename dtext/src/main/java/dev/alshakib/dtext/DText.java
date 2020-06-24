@@ -124,26 +124,43 @@ public class DText extends ShapeDrawable {
                 builder.context.getResources().getDisplayMetrics());
     }
 
-    private String getValidText(String text) {
-        text = text.trim();
+    private String getValidFirstChar(String text) {
+        // Remove non digit characters if isDigitOnly is set.
+        // If the text is "You have 4 notifications", the library will build "4" as a drawable.
+        text = builder.isDigitOnly ? text.replaceAll("[^\\p{Nd}]", "") : text;
 
-        // isDigitOnly and isAlphaNumOnly will work if isFirstCharOnly is set
-        if (builder.isFirstCharOnly) {
+        // Remove non Alpha Numeric characters if isAlphaNumOnly is set.
+        // If the text is "<Unknown>", the library will not build "<" as a drawable.
+        // The library will build "U" as a drawable.
+        text = builder.isAlphaNumOnly ? text.replaceAll("[^\\p{L}\\p{Nl}\\p{Nd}]", "") : text;
 
-            // Remove non digit characters if isDigitOnly is set.
-            // If the text is "You have 4 notifications", the library will build "4" as a drawable.
-            text = builder.isDigitOnly ? text.replaceAll("[^\\p{Nd}]", "") : text;
+        return String.valueOf(text.charAt(0));
+    }
 
-            // Remove non Alpha Numeric characters if isAlphaNumOnly is set.
-            // If the text is "<Unknown>", the library will not build "<" as a drawable.
-            // The library will build "U" as a drawable.
-            text = builder.isAlphaNumOnly ? text.replaceAll("[^\\p{L}\\p{Nl}\\p{Nd}]", "") : text;
-
-            if (text.isEmpty()) {
-                // Build a dot as a drawable, if no valid text is found.
-                return "•";
+    private String getValidText() {
+        String text = "";
+        if (builder.firstText != null && builder.lastText != null) {
+            if (builder.isFirstCharOnly) {
+                String first = getValidFirstChar(builder.firstText.trim());
+                String last = getValidFirstChar(builder.lastText.trim());
+                if (first.isEmpty() && last.isEmpty()) {
+                    // Build a dot as a drawable, if no valid text is found.
+                    return "•";
+                }
+                text = first + last;
+            } else {
+                text = builder.text.trim();
             }
-            text = String.valueOf(text.charAt(0));
+        } else {
+            if (builder.isFirstCharOnly) {
+                text = getValidFirstChar(builder.text.trim());
+                if (text.isEmpty()) {
+                    // Build a dot as a drawable, if no valid text is found.
+                    return "•";
+                }
+            } else {
+                text = builder.text.trim();
+            }
         }
         text = builder.toUpperCase ? text.toUpperCase() : text;
         return text;
@@ -166,7 +183,7 @@ public class DText extends ShapeDrawable {
     // Draw a border around the drawable.
     private void drawBorder(Canvas canvas) {
         RectF rect = new RectF(getBounds());
-        rect.inset((float) this.borderThickness / 2, (float) this.borderThickness / 2);
+        rect.inset(this.borderThickness / 2, this.borderThickness / 2);
 
         if (builder.shape instanceof OvalShape) {
             canvas.drawOval(rect, borderPaint);
@@ -195,7 +212,7 @@ public class DText extends ShapeDrawable {
                 (Math.min(canvasWidth, canvasHeight) / 2) : this.textSize;
 
         textPaint.setTextSize(textSize);
-        canvas.drawText(getValidText(builder.text), canvasWidth / 2, canvasHeight / 2 -
+        canvas.drawText(getValidText(), canvasWidth / 2, canvasHeight / 2 -
                 ((textPaint.descent() + textPaint.ascent()) / 2), textPaint);
 
         canvas.restoreToCount(savedCanvasCount);
@@ -230,6 +247,8 @@ public class DText extends ShapeDrawable {
         private Context context;
         private Shape shape;
         private String text;
+        private String firstText;
+        private String lastText;
         private Typeface typeface;
         private int textColor;
         private float textSize;
@@ -271,6 +290,18 @@ public class DText extends ShapeDrawable {
         public Builder setText(String text) {
             this.text = text;
             return this;
+        }
+
+        public Builder setText(String first, String last) {
+            this.firstText = first;
+            this.lastText = last;
+            return setText(first + last);
+        }
+
+        public Builder setText(String first, String last, String separator) {
+            this.firstText = first;
+            this.lastText = last;
+            return setText(first + separator + last);
         }
 
         public String getText() {
