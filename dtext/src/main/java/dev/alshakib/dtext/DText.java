@@ -26,7 +26,6 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -62,11 +61,9 @@ public class DText extends ShapeDrawable {
 
     private final Builder builder;
     private final Paint textPaint;
-    private final Paint borderPaint;
 
     private float height;
     private float width;
-    private float borderThickness;
     private float textSize;
 
     private List<String> randomColorList;
@@ -79,8 +76,6 @@ public class DText extends ShapeDrawable {
         // Use sp and dp as unit of measurement.
         height = builder.context != null ? dpToPx(builder.height) : builder.height;
         width = builder.context != null ? dpToPx(builder.width) : builder.width;
-        borderThickness = builder.context != null ?
-                dpToPx(builder.borderThickness) : builder.borderThickness;
         textSize = builder.context != null ? spToPx(builder.textSize) : builder.textSize;
 
         if (builder.isRandomBackgroundColor) {
@@ -96,16 +91,9 @@ public class DText extends ShapeDrawable {
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setColor(builder.textColor);
         textPaint.setTypeface(builder.typeface);
-        textPaint.setStrokeWidth(this.borderThickness);
 
         int backgroundColor = builder.isRandomBackgroundColor ?
                 getRandomColor() : builder.backgroundColor;
-
-        // Initialize paint class for border
-        borderPaint = new Paint();
-        borderPaint.setColor(getDarkerShade(backgroundColor));
-        borderPaint.setStyle(Paint.Style.STROKE);
-        borderPaint.setStrokeWidth(this.borderThickness);
 
         // Initialize paint class for background
         Paint paint = getPaint();
@@ -173,35 +161,10 @@ public class DText extends ShapeDrawable {
                 .get(random.nextInt(randomColorList.size())));
     }
 
-    // Create a darker shade for border
-    private int getDarkerShade(int color) {
-        return Color.rgb((int) (builder.borderShadeFactor * Color.red(color)),
-                (int) (builder.borderShadeFactor * Color.green(color)),
-                (int) (builder.borderShadeFactor * Color.blue(color)));
-    }
-
-    // Draw a border around the drawable.
-    private void drawBorder(Canvas canvas) {
-        RectF rect = new RectF(getBounds());
-        rect.inset(this.borderThickness / 2, this.borderThickness / 2);
-
-        if (builder.shape instanceof OvalShape) {
-            canvas.drawOval(rect, borderPaint);
-        } else if (builder.shape instanceof RoundRectShape) {
-            canvas.drawRoundRect(rect, builder.radius, builder.radius, borderPaint);
-        } else {
-            canvas.drawRect(rect, borderPaint);
-        }
-    }
-
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         Rect bounds = getBounds();
-
-        if (this.borderThickness > 0) {
-            drawBorder(canvas);
-        }
 
         int savedCanvasCount = canvas.save();
         canvas.translate(bounds.left, bounds.top);
@@ -253,10 +216,8 @@ public class DText extends ShapeDrawable {
         private int textColor;
         private float textSize;
         private int backgroundColor;
-        private float borderThickness;
         private float width;
         private float height;
-        private float borderShadeFactor;
         private float radius;
         private boolean toUpperCase;
         private boolean isFirstCharOnly;
@@ -270,8 +231,6 @@ public class DText extends ShapeDrawable {
             textSize = -1;
             width = -1;
             height = -1;
-            borderThickness = 0;
-            borderShadeFactor = 0.9f;
             backgroundColor = Color.GRAY;
             textColor = Color.WHITE;
             shape = new RectShape();
@@ -370,24 +329,6 @@ public class DText extends ShapeDrawable {
         public Builder setBackgroundColor(String color) {
             this.backgroundColor = Color.parseColor(color);
             return this;
-        }
-
-        public Builder setBorder(float thickness) {
-            this.borderThickness = thickness;
-            return this;
-        }
-
-        public float getBorderThickness() {
-            return this.borderThickness;
-        }
-
-        public Builder setBorderShadeFactor(float borderShadeFactor) {
-            this.borderShadeFactor = borderShadeFactor;
-            return this;
-        }
-
-        public float getBorderShadeFactor() {
-            return this.borderShadeFactor;
         }
 
         public Builder enableUpperCase(boolean flag) {
@@ -506,6 +447,10 @@ public class DText extends ShapeDrawable {
             float[] radii = {radius, radius, radius, radius, radius, radius, radius, radius};
             this.shape = new RoundRectShape(radii, null, null);
             return this;
+        }
+
+        public float getRadius() {
+            return this.radius;
         }
 
         public Builder drawAsRound() {

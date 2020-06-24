@@ -143,14 +143,6 @@ builder.setWidth(150);
 // Set text size.
 builder.setTextSize(24);
 
-// Draw border around the canvas.
-builder.setBorder(16);
-
-// You can customize the border shade factor.
-// By default DText uses 0.9f as a shade factor.
-// 1f is 100% transparent, 0f is 100% solid!
-builder.setBorderShadeFactor(0.7f);
-
 // By default, DText uses pixels to calculate height, width and text size.
 // But you can use DP for height/width and SP for text size as well
 // by passing a context to the builder.
