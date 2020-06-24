@@ -264,9 +264,17 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public boolean isSpAndDp() {
+            return this.context != null;
+        }
+
         public Builder setText(String text) {
             this.text = text;
             return this;
+        }
+
+        public String getText() {
+            return this.text;
         }
 
         public Builder setHeight(float height) {
@@ -274,9 +282,17 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public float getHeight() {
+            return this.height;
+        }
+
         public Builder setWidth(float width) {
             this.width = width;
             return this;
+        }
+
+        public float getWidth() {
+            return this.width;
         }
 
         public Builder setTypeface(Typeface typeface) {
@@ -284,14 +300,26 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public Typeface getTypeface() {
+            return this.typeface;
+        }
+
         public Builder setTextSize(float textSize) {
             this.textSize = textSize;
             return this;
         }
 
+        public float getTextSize() {
+            return this.textSize;
+        }
+
         public Builder setTextColor(int color) {
             this.textColor = color;
             return this;
+        }
+
+        public int getTextColor() {
+            return this.textColor;
         }
 
         public Builder setTextColor(String color) {
@@ -304,6 +332,10 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public int getBackgroundColor() {
+            return this.backgroundColor;
+        }
+
         public Builder setBackgroundColor(String color) {
             this.backgroundColor = Color.parseColor(color);
             return this;
@@ -314,9 +346,17 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public float getBorderThickness() {
+            return this.borderThickness;
+        }
+
         public Builder setBorderShadeFactor(float borderShadeFactor) {
             this.borderShadeFactor = borderShadeFactor;
             return this;
+        }
+
+        public float getBorderShadeFactor() {
+            return this.borderShadeFactor;
         }
 
         public Builder enableUpperCase(boolean flag) {
@@ -329,6 +369,10 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public boolean isToUpperCase() {
+            return this.toUpperCase;
+        }
+
         public Builder enableFirstCharOnly(boolean flag) {
             this.isFirstCharOnly = flag;
             return this;
@@ -337,6 +381,10 @@ public class DText extends ShapeDrawable {
         public Builder firstCharOnly() {
             enableFirstCharOnly(true);
             return this;
+        }
+
+        public boolean isFirstCharOnly() {
+            return this.isFirstCharOnly;
         }
 
         public Builder enableDigitOnly(boolean flag) {
@@ -349,6 +397,10 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public boolean isDigitOnly() {
+            return this.isDigitOnly;
+        }
+
         public Builder enableAlphaNumOnly(boolean flag) {
             this.isAlphaNumOnly = flag;
             return this;
@@ -357,6 +409,10 @@ public class DText extends ShapeDrawable {
         public Builder alphaNumOnly() {
             enableAlphaNumOnly(true);
             return this;
+        }
+
+        public boolean isAlphaNumOnly() {
+            return this.isAlphaNumOnly;
         }
 
         public Builder enableRandomBackgroundColor(boolean flag) {
@@ -369,9 +425,17 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public boolean isRandomBackgroundColor() {
+            return this.isRandomBackgroundColor;
+        }
+
         public Builder setRandomColorList(List<String> backgroundColorList) {
             this.randomColorList = backgroundColorList;
             return this;
+        }
+
+        public List<String> getRandomColorList() {
+            return this.randomColorList;
         }
 
         public Builder boldText() {
@@ -379,9 +443,17 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public boolean isBoldText() {
+            return typeface.isBold();
+        }
+
         public Builder italicText() {
             typeface = Typeface.create(typeface, Typeface.ITALIC);
             return this;
+        }
+
+        public boolean isItalicText() {
+            return typeface.isItalic();
         }
 
         public Builder boldItalicText() {
@@ -394,6 +466,10 @@ public class DText extends ShapeDrawable {
             return this;
         }
 
+        public boolean isRectangle() {
+            return this.shape instanceof RectShape;
+        }
+
         public Builder drawAsRectangle(float radius) {
             this.radius = radius;
             float[] radii = {radius, radius, radius, radius, radius, radius, radius, radius};
@@ -404,6 +480,14 @@ public class DText extends ShapeDrawable {
         public Builder drawAsRound() {
             shape = new OvalShape();
             return this;
+        }
+
+        public boolean isRound() {
+            return this.shape instanceof OvalShape;
+        }
+
+        public Shape getShape() {
+            return this.shape;
         }
 
         public DText build() {
