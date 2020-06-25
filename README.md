@@ -20,7 +20,7 @@ DText *(for curious mind, it is DrawableText)* is a minimal Android Library that
 
 The latest version is available for,
 
-* Android SKD 14 and higher
+* Android SKD 9 and higher
 
 ## Getting Started
 
@@ -45,13 +45,13 @@ allprojects {
 
 ```java
 dependencies {
-	implementation "com.gitlab.AlShakib:dtext:1.0.0"
+	implementation "com.gitlab.AlShakib:dtext:1.0.1"
 }
 ```
 
 #### For Maven:
 
-**Step 1.** Add the JitPack repository to your build file 
+**Step 1.** Add the JitPack repository to your build file
 
 ```xml
 <repositories>
@@ -68,7 +68,7 @@ dependencies {
 <dependency>
     <groupId>com.gitlab.AlShakib</groupId>
     <artifactId>dtext</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -97,9 +97,22 @@ DText.Builder builder = new DText.Builder();
 // Set text that we are going to draw.
 builder.setText("Android DText Library");
 
+// You can set first name and last name as well.
+// By default, it will draw first name + last name
+// on the canvas.
+builder.setText("Al", "Shakib");
+
+// You can set a separator between firstname and lastname.
+// It will draw first name + separator + last name
+// on the canvas.
+builder.setText("Al", "Shakib", " ");
+
 // Draw only the first character.
-// If the text is "android",
-// then the builder will draw "a" on the canvas.
+// Like "Android" -> "A"
+// If first name and last name is set,
+// the firstCharOnly will draw first character of first name
+// and first character of last name on the canvas.
+// Like, "Al Shakib" -> "AS"
 builder.firstCharOnly();
 
 // Draw only the alphanumeric character.
@@ -179,6 +192,11 @@ builder.drawAsRectangle(16);
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## TO DO
+
+- [ ] Teardrop shape
+- [ ] Squircle shape
 
 ## Thanks to
 
