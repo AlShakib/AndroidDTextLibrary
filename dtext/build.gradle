@@ -18,6 +18,32 @@
  */
 
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = "AndroidDTextLibrary"
+    bintrayName = "dev.alshakib.dtext"
+
+    publishedGroupId = 'dev.alshakib.dtext'
+    artifact = 'dtext'
+    libraryName = 'dtext'
+
+    libraryDescription = 'A minimal Android library that create nice drawable from string.'
+
+    siteUrl = 'https://gitlab.com/AlShakib/dtext'
+    gitUrl = 'https://gitlab.com/AlShakib/dtext.git'
+
+    libraryVersion = "$dtext_version"
+
+    developerId = 'AlShakib'
+    developerName = 'Al Shakib'
+    developerEmail = 'shakib@alshakib.dev'
+
+    licenseName = 'GNU GENERAL PUBLIC LICENSE, Version 3.0'
+    licenseUrl = 'https://www.gnu.org/licenses'
+    allLicenses = ["GPL-3.0"]
+}
 
 android {
     compileSdkVersion 29
@@ -26,8 +52,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.0"
+        versionCode rootProject.dtext_version_code
+        versionName "$dtext_version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -47,5 +73,15 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_test_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version"
+}
 
+repositories {
+    mavenCentral()
+}
+
+//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
+//Place it at the end of the file
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'install.gradle'
+    apply from: 'bintray.gradle'
 }
