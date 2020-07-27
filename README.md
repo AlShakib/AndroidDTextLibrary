@@ -1,6 +1,6 @@
 ![Android DText Library](docs/assets/DText.png)
 
-[![](https://jitpack.io/v/com.gitlab.AlShakib/dtext.svg)](https://jitpack.io/#com.gitlab.AlShakib/dtext)
+[ ![Download](https://api.bintray.com/packages/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/images/download.svg) ](https://bintray.com/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/_latestVersion)
 
 # Android DText Library
 
@@ -8,7 +8,18 @@ DText *(for curious mind, it is DrawableText)* is a minimal Android Library that
 
 ## Table of Contents
 
-[[_TOC_]]
+- [Screenshots](#screenshots)
+- [Supported SDK](#supported-sdk)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+    - [For Gradle:](#for-gradle)
+    - [For Maven:](#for-maven)
+  - [Basic Usages](#basic-usages)
+  - [Customization](#customization)
+- [Contributing](#contributing)
+- [TO DO](#to-do)
+- [Thanks to](#thanks-to)
+- [License](#license)
 
 ## Screenshots
 
@@ -28,47 +39,20 @@ The latest version is available for,
 
 #### For Gradle:
 
-**Step 1.** Add the JitPack repository to your build file
-
-Add it in your root build.gradle at the end of repositories:
-
-```Java
-allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
-}
-```
-
-**Step 2.** Add the dependency
-
 ```java
 dependencies {
-	implementation "com.gitlab.AlShakib:dtext:1.0.1"
+    implementation 'dev.alshakib.dtext:dtext:1.0.1'
 }
 ```
 
 #### For Maven:
 
-**Step 1.** Add the JitPack repository to your build file
-
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-```
-
-**Step 2.** Add the dependency
-
 ```xml
 <dependency>
-    <groupId>com.gitlab.AlShakib</groupId>
-    <artifactId>dtext</artifactId>
-    <version>1.0.1</version>
+  <groupId>dev.alshakib.dtext</groupId>
+  <artifactId>dtext</artifactId>
+  <version>1.0.1</version>
+  <type>pom</type>
 </dependency>
 ```
 
