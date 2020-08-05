@@ -1,10 +1,10 @@
 ![Android DText Library](docs/assets/DText.png)
 
-[ ![Download](https://api.bintray.com/packages/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/images/download.svg) ](https://bintray.com/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/_latestVersion)
+[![Download](https://api.bintray.com/packages/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/images/download.svg)](https://bintray.com/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/_latestVersion)
 
 # Android DText Library
 
-DText *(for curious mind, it is DrawableText)* is a minimal Android Library that creates beautiful [drawable](https://developer.android.com/reference/android/graphics/drawable/Drawable) from a string. You can use it from anywhere in your project. It is written in Java. The source code is published under GPLv3 and the license is available [here](LICENSE).
+DText *(for curious mind, it is DrawableText)* is a minimal Android Library that creates beautiful [drawable](https://developer.android.com/reference/android/graphics/drawable/Drawable) from a string. You can use it from anywhere in your project. It is written in Java. The source code is published under MIT and the license is available [here](LICENSE).
 
 ## Table of Contents
 
@@ -188,6 +188,6 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-[GNU General Public License v3.0](LICENSE)
+[MIT License](LICENSE)
 
 Copyright © 2020 [Al Shakib](https://alshakib.dev)
