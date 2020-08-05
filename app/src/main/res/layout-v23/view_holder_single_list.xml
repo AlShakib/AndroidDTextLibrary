@@ -37,27 +37,23 @@
     android:paddingLeft="16dp"
     android:paddingEnd="16dp"
     android:paddingRight="16dp"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/display_icon"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/display_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/display_icon"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/display_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:singleLine="true"
-            android:layout_gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:singleLine="true"
+        android:layout_gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 </LinearLayout>
