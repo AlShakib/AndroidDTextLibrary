@@ -39,8 +39,8 @@ ext {
 
     libraryDescription = 'A minimal Android library that create nice drawable from string.'
 
-    siteUrl = 'https://gitlab.com/AlShakib/dtext'
-    gitUrl = 'https://gitlab.com/AlShakib/dtext.git'
+    siteUrl = 'https://github.com/AlShakib/AndroidDTextLibrary'
+    gitUrl = 'https://github.com/AlShakib/AndroidDTextLibrary.git'
 
     libraryVersion = "$dtext_version"
 
@@ -48,9 +48,9 @@ ext {
     developerName = 'Al Shakib'
     developerEmail = 'shakib@alshakib.dev'
 
-    licenseName = 'GNU GENERAL PUBLIC LICENSE, Version 3.0'
-    licenseUrl = 'https://www.gnu.org/licenses'
-    allLicenses = ["GPL-3.0"]
+    licenseName = 'MIT License'
+    licenseUrl = 'https://raw.githubusercontent.com/AlShakib/AndroidDTextLibrary/master/LICENSE'
+    allLicenses = ["MIT"]
 }
 
 android {
