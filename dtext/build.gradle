@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 Al Shakib (shakib@alshakib.dev)
+ * Copyright (c) 2021 Al Shakib (shakib@alshakib.dev)
  *
  * This file is part of Android DText Library
  *
@@ -26,70 +26,28 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
-
-ext {
-    bintrayRepo = "AndroidDTextLibrary"
-    bintrayName = "dev.alshakib.dtext"
-
-    publishedGroupId = 'dev.alshakib.dtext'
-    artifact = 'dtext'
-    libraryName = 'dtext'
-
-    libraryDescription = 'A minimal Android library that create nice drawable from string.'
-
-    siteUrl = 'https://github.com/AlShakib/AndroidDTextLibrary'
-    gitUrl = 'https://github.com/AlShakib/AndroidDTextLibrary.git'
-
-    libraryVersion = "$dtext_version"
-
-    developerId = 'AlShakib'
-    developerName = 'Al Shakib'
-    developerEmail = 'shakib@alshakib.dev'
-
-    licenseName = 'MIT License'
-    licenseUrl = 'https://raw.githubusercontent.com/AlShakib/AndroidDTextLibrary/master/LICENSE'
-    allLicenses = ["MIT"]
-}
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 30
-        versionCode rootProject.dtext_version_code
-        versionName "$dtext_version"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        minSdkVersion rootProject.minSdkVersion
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        debug {
+            versionNameSuffix = '-SNAPSHOT'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$androidx_test_junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 }
 
-repositories {
-    mavenCentral()
-}
-
-//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
-//Place it at the end of the file
-if (project.rootProject.file('local.properties').exists()) {
-    apply from: 'install.gradle'
-    apply from: 'bintray.gradle'
-}
+apply from: 'publish.gradle'
