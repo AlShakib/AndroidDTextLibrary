@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 Al Shakib (shakib@alshakib.dev)
+ * Copyright (c) 2021 Al Shakib (shakib@alshakib.dev)
  *
  * This file is part of Android DText Library
  *
@@ -42,37 +42,20 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.graphics.drawable.shapes.Shape;
 import android.util.TypedValue;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class DText extends ShapeDrawable {
-    private final String LOG_TAG = this.getClass().getSimpleName();
-
-    private final String[] defaultColors = {
-            "#DB4437",
-            "#E91E63",
-            "#9C27B0",
-            "#673AB7",
-            "#3F51B5",
-            "#4285F4",
-            "#039BE5",
-            "#0097A7",
-            "#009688",
-            "#0F9D58",
-            "#689F38",
-            "#EF6C00",
-            "#FF5722",
-            "#757575"
-    };
-
     private final Builder builder;
     private final Paint textPaint;
 
-    private float height;
-    private float width;
-    private float textSize;
+    private final float height;
+    private final float width;
+    private final float textSize;
 
     private List<String> randomColorList;
 
@@ -87,6 +70,22 @@ public class DText extends ShapeDrawable {
         textSize = builder.context != null ? spToPx(builder.textSize) : builder.textSize;
 
         if (builder.isRandomBackgroundColor) {
+            String[] defaultColors = {
+                    "#DB4437",
+                    "#E91E63",
+                    "#9C27B0",
+                    "#673AB7",
+                    "#3F51B5",
+                    "#4285F4",
+                    "#039BE5",
+                    "#0097A7",
+                    "#009688",
+                    "#0F9D58",
+                    "#689F38",
+                    "#EF6C00",
+                    "#FF5722",
+                    "#757575"
+            };
             randomColorList = builder.randomColorList == null ?
                     new ArrayList<>(Arrays.asList(defaultColors)) :
                     builder.randomColorList;
@@ -134,7 +133,7 @@ public class DText extends ShapeDrawable {
     }
 
     private String getValidText() {
-        String text = "";
+        String text;
         if (builder.firstText != null && builder.lastText != null) {
             if (builder.isFirstCharOnly) {
                 String first = getValidFirstChar(builder.firstText.trim());
@@ -214,7 +213,7 @@ public class DText extends ShapeDrawable {
         return (int) this.height;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private Context context;
         private Shape shape;
         private String text;
@@ -245,8 +244,8 @@ public class DText extends ShapeDrawable {
             typeface = Typeface.DEFAULT;
         }
 
-        public Builder useSpAndDp(Context context) {
-            this.context = context;
+        public Builder useSpAndDp(@NonNull Context context) {
+            this.context = context.getApplicationContext();
             return this;
         }
 
