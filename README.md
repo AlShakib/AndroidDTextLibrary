@@ -1,6 +1,6 @@
 ![Android DText Library](docs/assets/DText.png)
 
-[![Download](https://api.bintray.com/packages/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/images/download.svg)](https://bintray.com/alshakib/AndroidDTextLibrary/dev.alshakib.dtext/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.alshakib.dtext/dtext.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22dev.alshakib.dtext%22%20AND%20a:%22dtext%22)
 
 # Android DText Library
 
@@ -40,8 +40,13 @@ The latest version is available for,
 #### For Gradle:
 
 ```java
+repositories {
+  ...
+  mavenCentral()
+}
+
 dependencies {
-    implementation 'dev.alshakib.dtext:dtext:1.0.1'
+    implementation 'dev.alshakib.dtext:dtext:{latest_version}'
 }
 ```
 
@@ -51,8 +56,8 @@ dependencies {
 <dependency>
   <groupId>dev.alshakib.dtext</groupId>
   <artifactId>dtext</artifactId>
-  <version>1.0.1</version>
-  <type>pom</type>
+  <version>{latest_version}</version>
+  <type>aar</type>
 </dependency>
 ```
 
